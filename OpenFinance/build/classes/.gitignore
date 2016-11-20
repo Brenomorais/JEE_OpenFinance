@@ -1,8 +1,2 @@
-*.class
-.DS_Store
-Servers/*
-.metadata
-.settings
-.classpath
-RemoteSystemsTempFiles/*
-*/bin/
+/com/
+/hibernate.cfg.xml

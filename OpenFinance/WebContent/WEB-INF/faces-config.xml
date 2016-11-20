@@ -6,9 +6,9 @@
     version="2.2">
     
     <application>    
-    	<message-bundle>com.buildsoftware.cursojsf2.financeiro.resources.validacao</message-bundle>    	
+    	<message-bundle>com.buildsoftware.openfinance.finance.resources.validacao</message-bundle>    	
     	<resource-bundle>
-    		<base-name>com.buildsoftware.cursojsf2.financeiro.resources.sistema</base-name>
+    		<base-name>com.buildsoftware.openfinance.finance.resources.sistema</base-name>
     		<var>msg</var>
     	</resource-bundle>    	
     	 <locale-config>

@@ -14,9 +14,9 @@
  		<property name="show_sql">true</property>    <!-- Producoção usar = false em produção-->
 		<property name="format_sql">true</property>  <!-- Formatar os comando sql em mais de uma linha -->
 		
-		<mapping class="com.buildsoftware.cursojsf2.financeiro.model.Pessoa"/>
-		<mapping class="com.buildsoftware.cursojsf2.financeiro.model.Lancamento"/>
-		<mapping class="com.buildsoftware.cursojsf2.financeiro.model.RamoAtividade"/>
+		<mapping class="com.buildsoftware.openfinance.finance.model.Pessoa"/>
+		<mapping class="com.buildsoftware.openfinance.finance.model.Lancamento"/>
+		<mapping class="com.buildsoftware.openfinance.finance.model.RamoAtividade"/>
 		
 	</session-factory>
 </hibernate-configuration>

@@ -1,0 +1,99 @@
+<ui:composition template="/template/LayoutPadrao.xhtml"
+ 	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:aw="http://java.sun.com/jsf/composite/algaworks">
+          
+      <ui:define name="titulo">Consulta Lançamentos</ui:define>    
+            
+      <ui:define name="conteudo">
+        <h:outputStylesheet library="css" name="consulta-lancamentos.css"/>
+           	
+        <h1>Lançamento</h1>
+  		
+  		<h:form id="frm">  		
+			<h:commandButton value="Novo Lançamento" outcome="NovoLancamento"
+				rendered="#{request.isUserInRole('cadastro')}"/>
+			
+			<h:messages  showDetail="false" showSummary="true"
+				styleClass="form-messages" errorClass="error"
+				infoClass="info"/>
+			
+			<h:dataTable var="lancamento" value="#{consultaLancamentoBean.lancamentos}" style="margin-top:5px;"
+				width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim,cor-nao"
+				columnClasses="tipo,pessoa,descricao,valor,vencimento,pagamento,situacao,acoes">
+				
+				<h:column>
+					<h:graphicImage value="/imagens/despesa.png"  rendered="#{lancamento.tipo eq 'DESPESA'}"/>
+					<h:graphicImage value="/imagens/receita.png"  rendered="#{lancamento.tipo eq 'RECEITA'}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Pessoa
+					</f:facet>
+					<h:outputText value="#{lancamento.pessoa.nome}" />
+				</h:column>
+			
+				<h:column>
+					<f:facet name="header">	
+						Descrição
+					</f:facet>
+					<h:outputText value="#{lancamento.descricao}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Valor
+					</f:facet>					
+					<aw:outputValorLancamento lancamentoBean="#{lancamento}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Vencimento
+					</f:facet>
+					<aw:outputDate value="#{lancamento.dataVencimento}" />	
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						Pagamento
+					</f:facet>
+					<aw:outputDate value="#{lancamento.dataPagamento}"/>						
+				</h:column>
+			
+				<h:column>
+					<f:facet name="header">
+						Situação
+					</f:facet>
+					<h:outputText value="Pago" rendered="#{lancamento.pago}"/>
+					<h:outputText value="Aberto" rendered="#{not lancamento.pago}"/>
+				</h:column>
+				
+				<h:column rendered="#{request.isUserInRole('cadastro')}">
+					<h:link outcome="NovoLancamento">
+						<h:graphicImage value="/imagens/editar.png" />
+						<f:param name="codigo" value="#{lancamento.codigo}" />
+					</h:link>
+					<h:commandLink action="#{consultaLancamentoBean.excluir()}">
+						<h:graphicImage value="/imagens/excluir.png" />
+						<f:setPropertyActionListener value="#{lancamento}" 
+							target="#{consultaLancamentoBean.lancamentoSelecionado}" />
+						<f:ajax render="@form"/>
+					</h:commandLink>					
+				</h:column>			
+			</h:dataTable>	
+			
+			
+			<h:panelGrid columns="2" id="panelTotal" styleClass="panelTotal">					
+				<h:outputLabel value="Despesas: "/>
+				<aw:outputCurrency value="#{consultaLancamentoBean.totalDespesa}" styleClass="totalDespesas" />			
+				<h:outputLabel value="Receita: "  />
+				<aw:outputCurrency value="#{consultaLancamentoBean.totalReceita}" styleClass="totalReceitas" />				
+			</h:panelGrid>		  		
+  		</h:form>           	
+      </ui:define>            
+</ui:composition>
+

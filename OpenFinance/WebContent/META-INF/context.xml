@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
 	<Realm className="org.apache.catalina.realm.JDBCRealm"
-		driverName="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3308/cursojsf?useSSL=false"
-		connectionName="root" connectionPassword="blm123"
+		driverName="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/cursojsf?useSSL=false"
+		connectionName="developer" connectionPassword="blm123"
 		userTable="usuario" userNameCol="nome_usuario"
 		userCredCol="senha" userRoleTable="permissao_usuario"
 		roleNameCol="nome_permissao" digest="MD5"/>
